@@ -9,7 +9,7 @@ license = {text = "MIT"}
 requires-python = ">=3.11"
 dependencies = [
     "setuptools",
-    "trl @ git+https://github.com/groundlight/trl.git@add_verifiers_support",
+    "trl",
     "deepspeed>=0.15.4",
     "accelerate>=1.3.0",
     "vllm>=0.7.2",
@@ -23,3 +23,5 @@ gpu = [
     "flash-attn==2.7.3",
 ]
 
+[tool.uv.sources]
+trl = { path = "../trl", editable = true }
