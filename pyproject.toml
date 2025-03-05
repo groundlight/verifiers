@@ -23,5 +23,3 @@ gpu = [
     "flash-attn==2.7.3",
 ]
 
-[tool.uv.sources]
-trl = { path = "../trl", editable = true }
