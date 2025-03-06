@@ -14,8 +14,7 @@ dependencies = [
     "vllm>=0.7.2",
     "wandb",
     "torch>=2.5.1",
-    # Groundlight's fork of TRL
-    "trl @ git+https://github.com/groundlight/trl.git@add_verifiers_support",
+    "trl",
 ]
 
 [project.optional-dependencies]
@@ -23,3 +22,6 @@ gpu = [
     "liger-kernel>=0.5.2",
     "flash-attn==2.7.3",
 ]
+
+[tool.uv.sources]
+trl = { path = "../trl", editable = true }
