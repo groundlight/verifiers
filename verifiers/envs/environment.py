@@ -1,13 +1,13 @@
-from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Sequence, Union
 import logging
+from abc import ABC, abstractmethod
+from typing import Any, Dict, List, Sequence
 
 from datasets import Dataset
 from trl.trainer.grpo_trainer import RewardFunc
 from vllm import LLM, SamplingParams
 
-class Environment(ABC):
 
+class Environment(ABC):
     def __init__(self, **kwargs: Any):
         for key, value in kwargs.items():
             setattr(self, key, value)
@@ -27,11 +27,17 @@ class Environment(ABC):
     @abstractmethod
     def get_rubric(self, **kwargs: Any) -> List[RewardFunc]:
         pass
-    
+
     @abstractmethod
-    def generate(self,
-                 prompts: List[List[Dict[str, Any]]],
-                 llm: LLM,
-                 sampling_params: SamplingParams,
-                 **kwargs: Any) -> Dict[str, List[Sequence[int]] | List[str] | List[List[Dict[str, Any]]]]:
+    def generate(
+        self,
+        prompts: List[List[Dict[str, Any]]],
+        llm: LLM,
+        sampling_params: SamplingParams,
+        **kwargs: Any,
+    ) -> Dict[str, List[Sequence[int]] | List[str] | List[List[Dict[str, Any]]]]:
+        pass
+
+    @abstractmethod
+    def log_metrics(self, **kwargs: Any) -> None:
         pass
